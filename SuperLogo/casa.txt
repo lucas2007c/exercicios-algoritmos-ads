@@ -1,0 +1,152 @@
+aprenda casa :a
+tat
+uselápis
+escreva [desenhando parede frontal]
+quadrado :a
+
+escreva [desenhando porta]
+pd 90
+pf :a*0.33
+pe 90
+retangulo :a*0.66 :a*0.33
+
+escreva[desenhando teto frontal]
+pe 90
+pf :a*0.33
+pd 90
+pf :a
+triangulo :a
+
+escreva [desenhando teto lateral]
+pd 90
+pf :a*3
+pe 90
+paralelograma :a :a*2
+
+escreva [desenhando chamine]
+pe 90
+pf :a*2
+pd 90
+usenada
+pf :a*0.33
+pd 90
+pf :a*1.2
+pe 180
+pf :a*0.075
+pd 90
+uselápis
+retangulo :a*0.6 :a*0.15
+
+pf :a*0.6
+pe 90
+pf :a*0.075
+pd 90
+retangulo :a*0.1 :a*0.3
+
+escreva [desenhando parede lateral]
+pd 90
+pf :a*0.075
+pd 90
+pf :a*0.6
+pe 180
+pf :a*0.54
+pd 90
+pf :a*0.01
+useborracha
+pf :a*0.14
+pd 180
+usenada
+pf :a*0.15
+pe 90
+pf :a*0.54
+usenada
+pf :a*0.33
+pd 90
+pf :a*1.125
+pe 90
+pf :a
+pd 180
+uselápis
+retangulo :a :a*2
+
+escreva [desenhando janela esquerda]
+pd 90
+pf :a*0.25
+pe 90
+usenada
+pf :a*0.3
+uselápis
+retangulo :a*0.3 :a*0.5
+
+escreva [desenhando janela direita]
+pe 180
+usenada
+pf :a*0.3
+pe 90
+pf :a*0.75
+
+pf :a*0.25
+pe 90
+usenada
+pf :a*0.3
+uselápis
+retangulo :a*0.3 :a*0.5
+
+escreva [desenhando chao]
+pe 180
+usenada pf :a*0.3
+pe 90
+pf :a*0.75
+pf :a*0.5
+uselápis
+pe 180
+repita 4 [
+linha :a*4
+usenada
+pe 90
+pf :a*0.05
+pd 90
+uselápis
+]
+
+escreva [voltando para o inicio]
+usenada
+pf :a*3.5
+pd 90
+pf :a*0.2
+
+fim
+
+aprenda linha :tamanho
+pf :tamanho
+pe 180
+pf :tamanho
+pe 180
+fim
+
+aprenda paralelograma :altura :base
+pe 30
+pf :altura
+pe 60
+pf :base
+pe 120
+pf :altura
+pe 60
+pf :base
+pe 90
+fim
+
+aprenda quadrado :lado
+repita 4 [ pf :lado pd 90 ]
+fim
+
+aprenda retangulo :altura :base
+repita 2 [pf :altura pd 90 pf :base pd 90]
+fim
+
+aprenda triangulo :tamanho
+pd 30
+pf :tamanho
+repita 2 [pd 120 pf :tamanho]
+pd 90
+fim
