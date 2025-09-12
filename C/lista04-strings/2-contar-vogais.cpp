@@ -15,11 +15,34 @@ int main(void){
 	printf("Digite uma palavra: ");
 	scanf("%s", &palavra);
 	
-	// qtdVogais = contarVogais(palavra);
+	qtdVogais = contarVogais(palavra);
 	
 	// \" quer dizer que aspas eh um texto e nao as aspas do printf
 	printf("\nA palavra \"%s\" tem %d vogais\n", palavra, qtdVogais);
 	
 	system("pause");
 	return 0;
+}
+
+int contarVogais(char palavra[]){
+	int qtdVogais = 0;
+	int i = 0;
+	
+	while(palavra[i] != '\0'){
+		switch(palavra[i]){
+			case 'a':
+			case 'A':
+			case 'e':
+			case 'E':
+			case 'i':
+			case 'I':
+			case 'o':
+			case 'O':
+			case 'u':
+			case 'U':
+			qtdVogais++;
+		}
+		i++;
+	}
+	return qtdVogais;
 }
