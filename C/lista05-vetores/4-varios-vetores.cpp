@@ -60,20 +60,10 @@ void exibe(int vetor[], int N){
 }
 
 void exibe(int vetor1[], int vetor2[], int diferencas[], int somas[], int multiplicacoes[], int N){
-	printf("Vetor 1:\n");
-	exibe(vetor1, N);
-	
-	printf("Vetor 2:\n");
-	exibe(vetor2, N);
-	
-	printf("Vetor de diferencas:\n");
-	exibe(diferencas, N);
-	
-	printf("Vetor de somas:\n");
-	exibe(somas, N);
-	
-	printf("Vetor de multiplicacoes:\n");
-	exibe(multiplicacoes, N);
+	printf(" Vet1\t vet2\t diff\t sum\t mult\t\n");
+	for(int i = 0; i < N; i++){
+		printf(" %d\t  %d\t  %d\t  %d\t  %d\t\n", vetor1[i], vetor2[i], diferencas[i], somas[i], multiplicacoes[i]);
+	}
 }
 
 
