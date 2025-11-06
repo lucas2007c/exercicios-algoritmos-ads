@@ -54,15 +54,15 @@ void calculaInfo(int matriz[100][100], int media, int *abaixo, int *igual, int *
 		for(int j = 0; j < 100; j++) {
 			num = matriz[i][j];
 			if(num < media){
-				*abaixo = *abaixo + 1;
+				(*abaixo)++;
 			}
 			
 			if(num == media){
-				*igual = *igual + 1;
+				(*igual)++;
 			}
 			
 			if(num > media){
-				*acima = *acima + 1;
+				(*acima)++;
 			}
 		}
 	}
