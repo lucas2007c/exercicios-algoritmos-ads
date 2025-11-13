@@ -12,15 +12,30 @@ struct Data {
 	int ano;	
 };
 
-void corrigeData(Data*);
-
 int main(void) {
 	srand(time(NULL));
 
 	struct Data data;
 	
-	data.dia = (rand() % 31) + 1;
 	data.mes = (rand() % 11) + 1;
+	switch(data.mes){
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 9:
+		case 11: {
+			data.dia = (rand() % 31) + 1;
+			break;
+		}
+		case 2: {
+			data.dia = (rand() % 28) + 1;
+			break;
+		}
+		default:
+			data.dia = (rand() % 30) + 1;
+	}
+	
 	data.ano = 2000 + (rand() % 26);
 	
 	if(data.dia < 10)
