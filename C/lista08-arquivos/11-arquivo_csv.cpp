@@ -25,7 +25,7 @@ struct Pessoa {
 	char numero [5];
 	char bairro[50];
 	char cidade[50];
-	char estado[2];
+	char estado[3];
 };
 
 int main(void) {
@@ -43,51 +43,72 @@ int main(void) {
 	// lê a primeira linha com os nomes das colunas
 	fgets(linha, sizeof(linha), arquivo);
 
-	int x = 1;
+	int x = 0;
 
 	while (fgets(linha, sizeof(linha), arquivo) != NULL) {
 		int col = 0;
 		int index = 0;
-		
+		char textoCampo[300];
+
 		for(int i = 0; linha[i] != '\0'; i++) {
 			if(linha[i] != ',') {
-				switch(col) {
-					case 0:
-						pessoas[x].nome[index] = linha[i];
-						break;
-					case 1:
-						pessoas[x].idade[index] = linha[i];
-						break;
-					case 2:
-						pessoas[x].cpf[index] = linha[i];
-						break;
-					case 3:
-						pessoas[x].data_nascimento[index] = linha[i];
-						break;
-					case 4:
-						pessoas[x].sexo[index] = linha[i];
-						break;
-					case 5:
-						pessoas[x].endereco[index] = linha[i];
-						break;
-				}
+				textoCampo[index] = linha[i];
 				index++;
 			} else {
+				textoCampo[index] = '\0';
+				switch(col) {
+					case 0:
+						strcpy(pessoas[x].nome, textoCampo);
+						break;
+					case 1:
+						strcpy(pessoas[x].idade, textoCampo);
+						break;
+					case 2:
+						strcpy(pessoas[x].cpf, textoCampo);
+						break;
+					case 3:
+						strcpy(pessoas[x].data_nascimento, textoCampo);
+						break;
+					case 4:
+						strcpy(pessoas[x].sexo, textoCampo);
+						break;
+					case 5:
+						strcpy(pessoas[x].logradouro, textoCampo);
+						break;
+					case 6:
+						strcpy(pessoas[x].numero, textoCampo);
+						break;
+					case 7:
+						strcpy(pessoas[x].bairro, textoCampo);
+						break;
+					case 8:
+						strcpy(pessoas[x].cidade, textoCampo);
+						break;
+					default:
+						break;
+				}
+
 				index = 0;
 				col++;
+				textoCampo[0] = '\0';
 			}
 		}
 		
+		textoCampo[2] = '\0';
+		strcpy(pessoas[x].estado, textoCampo);
+
 		x++;
 	}
 
+	fclose(arquivo);
+	
 	for(int i = 0; i < 120; i++) {
 		printf("Nome: %s\n", pessoas[i].nome);
 		printf("Idade: %s\n", pessoas[i].idade);
 		printf("CPF: %s\n", pessoas[i].cpf);
 		printf("Data De Nascimento: %s\n", pessoas[i].data_nascimento);
-		printf("Sexo: %s", pessoas[i].sexo);
-		printf("Endereco: %s\n\n", pessoas[i].endereco);
+		printf("Sexo: %s\n", pessoas[i].sexo);
+		printf("Endereco: %s,%s,%s,%s,%s\n\n", pessoas[i].logradouro, pessoas[i].numero, pessoas[i].bairro, pessoas[i].cidade, pessoas[i].estado);
 	}
 
 	system("pause");
