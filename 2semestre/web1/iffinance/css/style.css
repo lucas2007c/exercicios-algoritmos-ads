@@ -1,0 +1,260 @@
+:root {
+    --primary: #FFEE00;
+    --background: #111;
+    --secondary-background: #000;
+    --font: #FFF;
+    --card-background: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: var(--background);
+    color: var(--font);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.flexrow {
+    display: flex;
+}
+
+.modal {
+    background-color: #000000cc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal main {
+    background-color: #272A2B;
+    width: 350px;
+    height: fit-content;
+    border-radius: 10px;
+    border: 1px solid #ffffff41;
+    padding: 20px;
+}
+
+.modal main form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal main label {
+    margin: 20px 0px 3px 0px;
+}
+
+.modal main form input,
+.modal main form select {
+    padding: 3px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+button,
+input[type="submit"] {
+    background-color: var(--primary);
+    padding: 10px !important;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.modal main form input[type="submit"] {
+    width: 100%;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+.close-modal {
+    margin-top: 20px;
+    color: var(--primary);
+    text-decoration: underline;
+    text-align: center;
+    cursor: pointer;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+body>header {
+    height: 100px;
+    background-color: var(--secondary-background);
+}
+
+body>header .wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+body>header .wrapper .flexrow {
+    align-items: center;
+    gap: 10px;
+}
+
+body>header img {
+    width: 60px;
+}
+
+body>header span {
+    color: var(--primary);
+}
+
+body>header nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+body>header nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+body>header nav ul li a {
+    color: var(--font);
+    text-decoration: none;
+    padding: 40px 20px;
+}
+
+body>header nav ul li a:hover,
+/* body > header nav ul li a.active */
+.active {
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+}
+
+.wrapper>main {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    padding-top: 20px;
+}
+
+main>h1 {
+    text-align: center;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    width: 250px;
+    background-color: var(--card-background);
+    position: relative;
+}
+
+.card header,
+.card footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card header {
+    background-color: var(--primary);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.card header h3 {
+    color: #272A2B;
+}
+
+.card h3,
+.card h1 {
+    font-weight: 500;
+}
+
+.card main {
+    padding: 20px 10px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    height: 115px;
+    justify-content: space-around;
+}
+
+.card main img {
+    width: 40px;
+}
+
+.positive {
+    color: #00A650;
+}
+
+.negative {
+    color: #FF3B30;
+}
+
+.card main h1 {
+    width: fit-content;
+}
+
+.card main.flexrow {
+    align-items: center;
+    gap: 20px;
+}
+
+.card footer {
+    border: 1px solid white;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.card .actions {
+    position: absolute;
+    inset: 0;
+    background-color: #00000077;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+body>footer {
+    height: 100px;
+    background-color: var(--secondary-background);
+    color: white;
+}
+
+body>footer .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+table,
+td,
+th {
+    border: 1px solid white;
+}
+
+table {
+    width: 350px;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 5px 10px;
+}

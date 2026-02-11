@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFfinance</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+    <div class="modal" id="add">
+        <main>
+            <h1>Adicionar</h1>
+            <form onsubmit="addTicker(event)">
+                <label for="ticker">Ticker:</label>
+                <input type="text" id="ticker" name="ticker">
+
+                <label for="bolsa">Bolsa</label>
+                <select id="bolsa" name="bolsa">
+                    <option selected disabled>-- Selecione uma bolsa --</option>
+                    <option value="Nasdaq">Nasdaq</option>
+                    <option value="NYSE">NYSE</option>
+                </select>
+
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" name="valor">
+
+                <label for="ativos">Ativos:</label>
+                <input type="text" id="ativos" name="ativos">
+
+                <input type="submit" value="Adicionar">
+                <span class="close-modal" onclick="closeModal('#add')">Fechar</span>
+            </form>
+        </main>
+    </div>
+
+    <div class="modal" id="edit">
+        <main>
+            <h1>Editar</h1>
+            <form>
+                <input type="hidden" id="cardID" name="cardID">
+                <label for="ticker">Ticker:</label>
+                <input type="text" id="editTicker" name="ticker">
+
+                <label for="bolsa">Bolsa</label>
+                <select id="editBolsa" name="bolsa">
+                    <option selected disabled>-- Selecione uma bolsa --</option>
+                    <option value="Nasdaq">Nasdaq</option>
+                    <option value="NYSE">NYSE</option>
+                </select>
+
+                <label for="valor">Valor:</label>
+                <input type="text" id="editValor" name="valor">
+
+                <label for="ativos">Ativos:</label>
+                <input type="text" id="editAtivos" name="ativos">
+
+                <input type="submit" value="Confirmar">
+                <span class="close-modal" onclick="closeModal('#edit')">Fechar</span>
+            </form>
+        </main>
+    </div>
+
+    <header>
+        <div class="wrapper">
+            <div class="flexrow">
+                <img src="./img/logo.svg" alt="Logo da IFFinance. Uma mão segurando algumas moedas">
+                <h1><span>IF</span>Finance</h1>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="quem-somos.html">Quem somos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><button onclick="openModal('#add')">+ Adicionar</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main>
+            <h1>Card Stock</h1>
+            <section id="cards">
+                <div class="card" id="APPL" onmouseenter="showButtons(event)" onmouseleave="hideButtons(event)">
+                    <header>
+                        <h3 class="cardTicker">APPL</h3>
+                        <h3 class="cardBolsa">Nasdaq</h3>
+                    </header>
+
+                    <main class="flexrow">
+                        <h1 class="positive">U$ <span>235.00</span></h1>
+                        <img src="./img/trending-up.svg">
+                    </main>
+
+                    <footer>
+                        <h3>Nº Ativos: <span class="cardAtivos">10</span></h3>
+                        <h3>U$ <span class="cardTotal">2350.00</span></p>
+                    </footer>
+
+                    <div class="actions">
+                        <button onclick="openEditCard(event)">Editar</button>
+                        <button onclick="deleteCard(event)">Excluir</button>
+                    </div>
+                </div>
+
+                <!-- <div class="card">
+                    <header>
+                        <h3>MSFT</h3>
+                        <h3>NYSE</h3>
+                    </header>
+
+                    <main class="flexrow">
+                        <h1 class="negative">U$ 43,00</h1>
+                        <img src="./img/trending-down.svg">
+                    </main>
+
+                    <footer>
+                        <h3>Nº Ativos: 4</h3>
+                        <h3>U$172,00</p>
+                    </footer>
+                </div> -->
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="wrapper">
+            Lucas Carneiro
+        </div>
+    </footer>
+</body>
+
+</html>
