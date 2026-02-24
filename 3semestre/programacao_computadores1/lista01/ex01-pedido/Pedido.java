@@ -3,22 +3,12 @@ package lista01.ex01_pedido;
 import java.util.ArrayList;
 
 public class Pedido {
-    int id;
     String nome;
     ArrayList<Produto> produtos = new ArrayList<>();
     float valorFinal;
     
     Pedido(String nome){
-        id += 1;
         this.nome = nome;
-    }
-
-    int getId() {
-        return id;
-    }
-
-    void setId(int id) {
-        this.id = id;
     }
 
     String getNome() {
