@@ -1,6 +1,6 @@
 // Crie uma classe Produto e uma classe Pedido. O pedido deve conter vários produtos.
 
-package ex01_pedido;
+package pedido;
 
 public class App {
     public static void main(String[] args) {
