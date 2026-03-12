@@ -1,3 +1,3 @@
-export default function(req, res){
+export default function updateUserController(req, res){
     res.send('PUT/ Usuário atualizado')
 }
