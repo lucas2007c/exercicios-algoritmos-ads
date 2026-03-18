@@ -5,3 +5,7 @@ export const createUser = async (user) => {
         data: user
     })
 }
+
+export const getUsers = async () => {
+    return await prisma.user.findMany()
+}
