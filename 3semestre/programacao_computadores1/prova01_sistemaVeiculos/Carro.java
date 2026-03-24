@@ -8,6 +8,7 @@ public class Carro extends Veiculo {
 
     @Override
     public void exibirInfo() {
-        System.out.printf("ID: %d\t| %s %s %d\t | Portas: %d\n", this.getId(), this.getMarca(), this.getModelo(), this.getAno(), this.portas);
+        super.exibirInfo();
+        System.out.printf("\t| Portas: %d\n", this.portas);
     }
 }

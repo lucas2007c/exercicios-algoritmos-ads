@@ -7,7 +7,8 @@ public class Moto extends Veiculo {
     }
 
     @Override
-    public void exibirInfo(){
-        System.out.printf("ID: %d\t| %s %s %d\t | Cilindradas: %d\n", this.getId(), this.getMarca(), this.getModelo(), this.getAno(), this.cilindradas);
+    public void exibirInfo() {
+        super.exibirInfo();
+        System.out.printf("\t| Cilindradas: %d\n", this.cilindradas);
     }
 }

@@ -12,7 +12,7 @@ public class Veiculo {
     }
 
     public void exibirInfo(){
-        System.out.printf("ID: %d\t| %s %s %d\n", this.id, this.marca, this.modelo, this.ano);
+        System.out.printf("ID: %d\t| %s %s %d", this.id, this.marca, this.modelo, this.ano);
     }
 
     public int getId() {
