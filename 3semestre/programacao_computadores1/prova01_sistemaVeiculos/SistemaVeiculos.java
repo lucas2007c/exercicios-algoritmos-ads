@@ -5,6 +5,11 @@ public class SistemaVeiculos {
     private static int classID = 1;
     private ArrayList<Carro> carros = new ArrayList<>();
     private ArrayList<Moto> motos = new ArrayList<>();
+    private Scanner input;
+
+    public SistemaVeiculos(Scanner input) {
+        this.input = input;
+    }
 
     public void cadastrarCarro() {
         Carro novoCarro = this.obterInfoCarro();
@@ -67,7 +72,7 @@ public class SistemaVeiculos {
             motos.get(i).exibirInfo();
         }
     }
-    
+
     public void atualizarMotos() {
         int id = obterId();
 
@@ -103,30 +108,26 @@ public class SistemaVeiculos {
     }
 
     private int obterId() {
-        Scanner sc = new Scanner(System.in);
-
         System.out.println("Insira o id do veiculo: ");
-        int id = sc.nextInt();
-
+        int id = input.nextInt();
+        input.nextLine();
         return id;
     }
 
     private Carro obterInfoCarro() {
-        Scanner sc = new Scanner(System.in);
-
-        sc.reset();
-
         System.out.println("Insira a marca do carro: ");
-        String marca = sc.nextLine();
+        String marca = input.nextLine();
 
         System.out.println("Insira o modelo do carro: ");
-        String modelo = sc.nextLine();
+        String modelo = input.nextLine();
 
         System.out.println("Insira o ano do carro: ");
-        int ano = sc.nextInt();
+        int ano = input.nextInt();
+        input.nextLine();
 
         System.out.println("Insira a quantidade de portas do carro: ");
-        int portas = sc.nextInt();
+        int portas = input.nextInt();
+        input.nextLine();
 
         return new Carro(marca, modelo, ano, portas);
     }
@@ -143,21 +144,19 @@ public class SistemaVeiculos {
     }
 
     private Moto obterInfoMoto() {
-        Scanner sc = new Scanner(System.in);
-
-        sc.reset();
-
         System.out.println("Insira a marca da moto: ");
-        String marca = sc.nextLine();
+        String marca = input.nextLine();
 
         System.out.println("Insira o modelo da moto: ");
-        String modelo = sc.nextLine();
+        String modelo = input.nextLine();
 
         System.out.println("Insira o ano da moto: ");
-        int ano = sc.nextInt();
-
+        int ano = input.nextInt();
+        input.nextLine();
+        
         System.out.println("Insira quantas cilindradas tem a moto: ");
-        int cilindradas = sc.nextInt();
+        int cilindradas = input.nextInt();
+        input.nextLine();
 
         return new Moto(marca, modelo, ano, cilindradas);
     }

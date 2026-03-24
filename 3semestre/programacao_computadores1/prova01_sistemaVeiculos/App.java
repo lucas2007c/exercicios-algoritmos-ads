@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        SistemaVeiculos sistema = new SistemaVeiculos();
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        SistemaVeiculos sistema = new SistemaVeiculos(input);
         int escolha = 0;
 
         do {
@@ -17,10 +17,10 @@ public class App {
             System.out.println("8 - Remover Moto");
             System.out.println("0 - Sair");
             System.out.println("\nEscolha uma opcao: ");
-            escolha = sc.nextInt();
+            escolha = input.nextInt();
 
             switch (escolha) {
-                case 1: 
+                case 1:
                     sistema.cadastrarCarro();
                     break;
                 case 2:
@@ -53,6 +53,6 @@ public class App {
             }
         } while (escolha != 0);
 
-        sc.close();
+        input.close();
     }
 }
