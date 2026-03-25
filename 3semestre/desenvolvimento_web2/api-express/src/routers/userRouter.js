@@ -11,8 +11,8 @@ import deleteUserController from '../controller/user/deleteUserController.js'
 
 router.get('/', getUsersController)
 router.post('/', createUserController)
-router.put('/', updateUserController)
-router.patch('/', updateUserAvatarController)
-router.delete('/', deleteUserController)
+router.put('/:id', updateUserController)
+router.patch('/:id', updateUserAvatarController)
+router.delete('/:id', deleteUserController)
 
 export default router
