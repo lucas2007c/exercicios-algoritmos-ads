@@ -1,4 +1,4 @@
-package exConstructor;
+package constructor;
 
 /*
 Implemente a classe Produto com os atributos nome, preco e quantidade
