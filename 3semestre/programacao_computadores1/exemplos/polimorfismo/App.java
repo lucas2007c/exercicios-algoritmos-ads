@@ -4,20 +4,28 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        ArrayList<Ingresso> ingressos = new ArrayList<>();
+        ArrayList<Personagem> personagens = new ArrayList<>();
 
-        ingressos.add(new Ingresso("Show A", 100));
-        ingressos.add(new Ingresso("Show B", 120));
+        personagens.add(new Personagem("Bartender", 50));
+        personagens.add(new Personagem("Aldeão", 50));
 
-        ingressos.add(new IngressoVIP("Show VIP 1", 200));
-        ingressos.add(new IngressoVIP("Show VIP 2", 250));
+        personagens.add(new Guerreiro("Guerreiro 1", 200, 50));
+        personagens.add(new Guerreiro("Guerreiro 2", 250, 50));
 
-        ingressos.add(new IngressoEstudante("Show Estudante 1", 80));
-        ingressos.add(new IngressoEstudante("Show Estudante 2", 90));
+        personagens.add(new Mago("Davy Jones", 120, 300));
+        personagens.add(new Mago("Patolino", 300, 250));
 
-        for (Ingresso ingresso : ingressos) {
-            ingresso.exibir();
+        for (Personagem personagem : personagens) {
+            String personagemTipo = personagem.getClass().getSimpleName();
+
+            System.out.println("Tipo: " + personagemTipo);
+            personagem.exibir();
             System.out.println();
+          
+            // if (personagemTipo.equals("Mago")) {
+            //     Mago mago = (Mago) personagem;
+            //     System.out.println("Este mago possui " + mago.mana + " de mana");
+            // }
         }
     }
 }
