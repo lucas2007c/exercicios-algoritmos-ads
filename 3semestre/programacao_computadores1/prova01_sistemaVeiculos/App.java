@@ -1,3 +1,5 @@
+package prova01_sistemaVeiculos;
+
 import java.util.Scanner;
 
 public class App {

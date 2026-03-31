@@ -1,3 +1,5 @@
+package reposicao01_lanchonete;
+
 public class Cliente {
     String nome;
 

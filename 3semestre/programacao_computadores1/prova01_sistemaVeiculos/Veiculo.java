@@ -1,3 +1,5 @@
+package prova01_sistemaVeiculos;
+
 public class Veiculo {
     private int id;
     private String marca;

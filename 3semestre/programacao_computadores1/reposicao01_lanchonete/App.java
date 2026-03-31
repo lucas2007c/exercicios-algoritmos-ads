@@ -1,3 +1,5 @@
+package reposicao01_lanchonete;
+
 public class App {
     public static void main(String[] args) {
         Cliente cliente1 = new Cliente("Ana");

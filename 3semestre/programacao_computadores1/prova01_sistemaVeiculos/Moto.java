@@ -1,3 +1,5 @@
+package prova01_sistemaVeiculos;
+
 public class Moto extends Veiculo {
     private int cilindradas;
 

@@ -1,3 +1,5 @@
+package reposicao01_lanchonete;
+
 import java.util.ArrayList;
 
 public class Pedido {
