@@ -26,6 +26,11 @@ public class App {
             //     Mago mago = (Mago) personagem;
             //     System.out.println("Este mago possui " + mago.mana + " de mana");
             // }
+
+            // if (personagem instanceof Mago) {
+            // Mago mago = (Mago) personagem;
+            // System.out.println("Este mago possui " + mago.mana + " de mana");
+            // }
         }
     }
 }
