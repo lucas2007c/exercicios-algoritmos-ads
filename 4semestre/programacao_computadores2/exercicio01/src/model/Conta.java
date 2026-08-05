@@ -4,9 +4,10 @@ import exception.SaldoInsuficienteException;
 import exception.ValorNegativoException;
 
 abstract class Conta {
-    public int numero;
-    public String titular;
-    public double saldo;
+    
+    protected int numero;
+    protected String titular;
+    protected double saldo;
 
     public Conta(int numero, String titular, double saldo) {
         this.numero = numero;
@@ -27,4 +28,29 @@ abstract class Conta {
     public void imprimirDados() {
         System.out.println(numero + "," + titular + "," + saldo);
     };
+    
+    // ==========================================================
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 }
