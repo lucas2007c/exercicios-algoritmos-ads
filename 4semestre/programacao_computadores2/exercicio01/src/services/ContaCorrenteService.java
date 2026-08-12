@@ -1,5 +1,6 @@
 package services;
 
+import exception.ContaExistenteException;
 import exception.SaldoInsuficienteException;
 import exception.ValorNegativoException;
 import java.io.IOException;
@@ -18,7 +19,17 @@ public class ContaCorrenteService {
     public void carregarDados() throws IOException {
         List<String> linhas = Files.readAllLines(caminho);
 
-        for (String linha : linhas) {
+        linhas.stream()
+                .map(L -> L.split(","))
+                .map(L -> new ContaCorrente(
+                Integer.parseInt(L[0]),
+                L[1],
+                Double.parseDouble(L[2])
+        ))
+                .forEach(contas::add);
+
+        /* 
+            for (String linha : linhas) {
             String[] dados = linha.split(",");
 
             int numero = Integer.parseInt(dados[0]);
@@ -28,11 +39,12 @@ public class ContaCorrenteService {
             ContaCorrente conta = new ContaCorrente(numero, titular, saldo);
             contas.add(conta);
         }
+         */
     }
-    
+
     public void salvarDados() {
         List<String> linhas = new ArrayList<>();
-        
+
         for (ContaCorrente conta : contas) {
             String linha = conta.getNumero() + "," + conta.getTitular() + "," + conta.getSaldo();
             linhas.add(linha);
@@ -45,35 +57,25 @@ public class ContaCorrenteService {
         }
     }
 
-    public void sacar(int numero, double valor) {
+    public void sacar(int numero, double valor) throws SaldoInsuficienteException, ValorNegativoException {
         ContaCorrente conta = buscarConta(numero);
 
-        try {
-            if (conta != null) {
-                conta.sacar(valor);
- 
-                salvarDados(); 
-            }
-        } catch (SaldoInsuficienteException | ValorNegativoException e) {
-            System.out.println(e.getMessage());
+        if (conta != null) {
+            conta.sacar(valor);
+
+            salvarDados();
         }
     }
 
-    public void depositar(int numero, double valor) {
+    public void depositar(int numero, double valor) throws ValorNegativoException {
         ContaCorrente conta = buscarConta(numero);
+        if (conta != null) {
+            conta.depositar(valor);
 
-        try {
-            if (conta != null) {
-                conta.depositar(valor);
-                
-                System.out.println("Depósito realizado com sucesso! Novo saldo: " + conta.getSaldo());
-                
-                salvarDados();
-            }
-        } catch (ValorNegativoException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Depósito realizado com sucesso! Novo saldo: " + conta.getSaldo());
+
+            salvarDados();
         }
-
     }
 
     public ContaCorrente buscarConta(int numero) {
@@ -87,9 +89,9 @@ public class ContaCorrenteService {
         return null;
     }
 
-    public void adicionarConta(ContaCorrente conta) {
+    public void adicionarConta(ContaCorrente conta) throws ContaExistenteException {
         if (buscarConta(conta.getNumero()) != null) {
-            System.out.println("Já existe uma conta com esse número.\n");
+            throw new ContaExistenteException();
         }
 
         contas.add(conta);
@@ -102,12 +104,12 @@ public class ContaCorrenteService {
             if (contas.get(i).getNumero() == numero) {
                 contas.set(i, novaConta);
                 System.out.println("Conta atualizada com sucesso.\n");
-                
+
                 salvarDados();
                 return true;
             }
         }
-        
+
         System.out.println("Conta não encontrada.\n");
         return false;
     }
@@ -118,7 +120,7 @@ public class ContaCorrenteService {
         if (conta != null) {
             contas.remove(conta);
             System.out.println("Conta removida com sucesso.\n");
-            
+
             salvarDados();
             return true;
         }
@@ -136,5 +138,9 @@ public class ContaCorrenteService {
         for (ContaCorrente conta : contas) {
             conta.imprimirDados();
         }
+    }
+
+    public ArrayList<ContaCorrente> getContas() {
+        return contas;
     }
 }

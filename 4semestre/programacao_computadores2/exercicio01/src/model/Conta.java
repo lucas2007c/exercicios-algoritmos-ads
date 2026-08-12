@@ -9,9 +9,14 @@ abstract class Conta {
     protected String titular;
     protected double saldo;
 
-    public Conta(int numero, String titular, double saldo) {
+    public Conta(int numero, String titular) {
         this.numero = numero;
         this.titular = titular;
+        this.saldo = 0;
+    }
+    
+    public Conta(int numero, String titular, double saldo) {
+        this(numero, titular);
         this.saldo = saldo;
     }
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import model.ContaCorrente;
 import services.ContaCorrenteService;
+import view.TabelaContas;
 
 public class Exercicio01 {
 
@@ -14,7 +15,11 @@ public class Exercicio01 {
         
         service.carregarDados();
         
-        int opcao;
+        TabelaContas menu = new TabelaContas(service);
+        menu.setVisible(true);
+        
+        
+        /* int opcao;
 
         do {
             System.out.println("\n===== MENU =====");
@@ -24,7 +29,7 @@ public class Exercicio01 {
             System.out.println("4 - Remover conta");
             System.out.println("5 - Listar contas");
             System.out.println("6 - Sacar");
-            System.out.println("5 - Depositar");
+            System.out.println("7 - Depositar");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
 
@@ -108,7 +113,8 @@ public class Exercicio01 {
         } while (opcao != 0);
 
         sc.close();
-    }
+        */
+    }     
 }
 
 
