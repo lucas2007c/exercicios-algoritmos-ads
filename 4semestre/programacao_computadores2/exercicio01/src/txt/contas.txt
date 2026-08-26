@@ -1,3 +1,0 @@
-1,lucas carneiro,150.0
-2,helena,100.0
-3,carlos,150.0

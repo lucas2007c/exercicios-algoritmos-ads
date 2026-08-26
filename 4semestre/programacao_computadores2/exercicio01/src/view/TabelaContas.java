@@ -2,6 +2,7 @@ package view;
 
 import exception.SaldoInsuficienteException;
 import exception.ValorNegativoException;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ContaCorrente;
@@ -153,6 +154,8 @@ public class TabelaContas extends javax.swing.JFrame {
                     "Erro",
                     JOptionPane.ERROR_MESSAGE
             );
+        } catch (SQLException ex) {
+            System.getLogger(TabelaContas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }//GEN-LAST:event_btnDepositarActionPerformed
 
@@ -209,6 +212,8 @@ public class TabelaContas extends javax.swing.JFrame {
                     "Erro",
                     JOptionPane.ERROR_MESSAGE
             );
+        } catch (SQLException ex) {
+            System.getLogger(TabelaContas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }//GEN-LAST:event_btnSacarActionPerformed
 
@@ -232,19 +237,24 @@ public class TabelaContas extends javax.swing.JFrame {
         );
 
         if (resposta == JOptionPane.YES_OPTION) {
-            boolean removida = contasService.removerConta(
-                    contaSelecionada.getNumero()
-            );
-
-            if (removida) {
-                contaSelecionada = null;
-
-                carregarContasNaTabela();
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Conta removida com sucesso!"
+            try {
+                boolean removida;
+                removida = contasService.removerConta(
+                        contaSelecionada.getNumero()
                 );
+
+                if (removida) {
+                    contaSelecionada = null;
+
+                    carregarContasNaTabela();
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Conta removida com sucesso!"
+                    );
+                }
+            } catch (SQLException ex) {
+                System.getLogger(TabelaContas.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
         }
     }//GEN-LAST:event_btnDeletarActionPerformed

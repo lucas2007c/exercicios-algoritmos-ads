@@ -1,10 +1,10 @@
 package services;
 
+import db.ContaDAO;
 import exception.ContaExistenteException;
 import exception.SaldoInsuficienteException;
 import exception.ValorNegativoException;
-import java.io.IOException;
-import java.nio.file.*;
+import java.sql.SQLException;
 import model.ContaCorrente;
 
 import java.util.ArrayList;
@@ -12,73 +12,15 @@ import java.util.List;
 
 public class ContaCorrenteService {
 
-    ArrayList<ContaCorrente> contas = new ArrayList<>();
+    List<ContaCorrente> contas = new ArrayList<>();
+    ContaDAO dao = new ContaDAO();
 
-    Path caminho = Paths.get("src/txt/contas.txt");
-
-    public void carregarDados() throws IOException {
-        List<String> linhas = Files.readAllLines(caminho);
-
-        linhas.stream()
-                .map(L -> L.split(","))
-                .map(L -> new ContaCorrente(
-                Integer.parseInt(L[0]),
-                L[1],
-                Double.parseDouble(L[2])
-        ))
-                .forEach(contas::add);
-
-        /* 
-            for (String linha : linhas) {
-            String[] dados = linha.split(",");
-
-            int numero = Integer.parseInt(dados[0]);
-            String titular = dados[1];
-            double saldo = Double.parseDouble(dados[2]);
-
-            ContaCorrente conta = new ContaCorrente(numero, titular, saldo);
-            contas.add(conta);
-        }
-         */
+    public void carregarDados() throws SQLException {
+        contas = dao.listar();
     }
-
-    public void salvarDados() {
-        List<String> linhas = new ArrayList<>();
-
-        for (ContaCorrente conta : contas) {
-            String linha = conta.getNumero() + "," + conta.getTitular() + "," + conta.getSaldo();
-            linhas.add(linha);
-        }
-
-        try {
-            Files.write(caminho, linhas);
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar os dados no arquivo: " + e.getMessage());
-        }
-    }
-
-    public void sacar(int numero, double valor) throws SaldoInsuficienteException, ValorNegativoException {
-        ContaCorrente conta = buscarConta(numero);
-
-        if (conta != null) {
-            conta.sacar(valor);
-
-            salvarDados();
-        }
-    }
-
-    public void depositar(int numero, double valor) throws ValorNegativoException {
-        ContaCorrente conta = buscarConta(numero);
-        if (conta != null) {
-            conta.depositar(valor);
-
-            System.out.println("Depósito realizado com sucesso! Novo saldo: " + conta.getSaldo());
-
-            salvarDados();
-        }
-    }
-
+    
     public ContaCorrente buscarConta(int numero) {
+
         for (ContaCorrente conta : contas) {
             if (conta.getNumero() == numero) {
                 return conta;
@@ -89,23 +31,63 @@ public class ContaCorrenteService {
         return null;
     }
 
-    public void adicionarConta(ContaCorrente conta) throws ContaExistenteException {
+    public void sacar(int numero, double valor)
+            throws SaldoInsuficienteException, ValorNegativoException, SQLException {
+
+        ContaCorrente conta = buscarConta(numero);
+
+        if (conta != null) {
+            conta.sacar(valor);
+
+            dao.atualizarSaldo(conta.getNumero(), conta.getSaldo());
+
+            System.out.println(
+                "Saque realizado com sucesso! Novo saldo: "
+                + conta.getSaldo()
+            );
+        }
+    }
+
+    public void depositar(int numero, double valor)
+            throws ValorNegativoException, SQLException {
+
+        ContaCorrente conta = buscarConta(numero);
+
+        if (conta != null) {
+            conta.depositar(valor);
+
+            dao.atualizarSaldo(conta.getNumero(), conta.getSaldo());
+
+            System.out.println(
+                "Depósito realizado com sucesso! Novo saldo: "
+                + conta.getSaldo()
+            );
+        }
+    }
+
+    public void adicionarConta(ContaCorrente conta)
+            throws ContaExistenteException, SQLException {
+
         if (buscarConta(conta.getNumero()) != null) {
             throw new ContaExistenteException();
         }
 
+        dao.inserir(conta);
         contas.add(conta);
+
         System.out.println("Conta adicionada com sucesso.\n");
-        salvarDados();
     }
 
-    public boolean atualizarConta(int numero, ContaCorrente novaConta) {
+    public boolean atualizarConta(int numero, ContaCorrente novaConta)
+            throws SQLException {
+
         for (int i = 0; i < contas.size(); i++) {
             if (contas.get(i).getNumero() == numero) {
-                contas.set(i, novaConta);
-                System.out.println("Conta atualizada com sucesso.\n");
+                dao.atualizarSaldo(numero, novaConta.getSaldo());
 
-                salvarDados();
+                contas.set(i, novaConta);
+
+                System.out.println("Conta atualizada com sucesso.\n");
                 return true;
             }
         }
@@ -114,14 +96,14 @@ public class ContaCorrenteService {
         return false;
     }
 
-    public boolean removerConta(int numero) {
+    public boolean removerConta(int numero) throws SQLException {
         ContaCorrente conta = buscarConta(numero);
 
         if (conta != null) {
+            dao.remover(numero);
             contas.remove(conta);
-            System.out.println("Conta removida com sucesso.\n");
 
-            salvarDados();
+            System.out.println("Conta removida com sucesso.\n");
             return true;
         }
 
@@ -140,7 +122,7 @@ public class ContaCorrenteService {
         }
     }
 
-    public ArrayList<ContaCorrente> getContas() {
+    public List<ContaCorrente> getContas() {
         return contas;
     }
 }

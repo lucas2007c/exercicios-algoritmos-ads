@@ -1,6 +1,7 @@
 package view;
 
 import exception.ContaExistenteException;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.ContaCorrente;
 import services.ContaCorrenteService;
@@ -9,9 +10,9 @@ public class AdicionarConta extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdicionarConta.class.getName());
 
-    private ContaCorrenteService contasService;
+    private final ContaCorrenteService contasService;
     
-    private TabelaContas tabelaContas;
+    private final TabelaContas tabelaContas;
 
     public AdicionarConta(ContaCorrenteService service, TabelaContas tabela) {
         initComponents();
@@ -112,6 +113,8 @@ public class AdicionarConta extends javax.swing.JFrame {
                     "Erro",
                     JOptionPane.ERROR_MESSAGE
             );
+        } catch (SQLException ex) {
+            System.getLogger(AdicionarConta.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
